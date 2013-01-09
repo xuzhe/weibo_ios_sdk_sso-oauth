@@ -426,8 +426,12 @@ static CGFloat kBorderWidth = 10;
     NSLog(@"url = %@", url);
     
     NSString *siteRedirectURI = [NSString stringWithFormat:@"%@%@", kSinaWeiboSDKOAuth2APIDomain, appRedirectURI];
+    NSString *weiboBugFixURI = nil;
+    if ([[appRedirectURI substringFromIndex:[appRedirectURI length] - 1] isEqualToString:@"/"]) {
+        weiboBugFixURI = [appRedirectURI substringToIndex:[appRedirectURI length] - 1];
+    }
     
-    if ([url hasPrefix:appRedirectURI] || [url hasPrefix:siteRedirectURI])
+    if ([url hasPrefix:appRedirectURI] || [url hasPrefix:siteRedirectURI] || (weiboBugFixURI && [url hasPrefix:weiboBugFixURI]))
     {
         NSString *error_code = [SinaWeiboRequest getParamValueFromUrl:url paramName:@"error_code"];
         
