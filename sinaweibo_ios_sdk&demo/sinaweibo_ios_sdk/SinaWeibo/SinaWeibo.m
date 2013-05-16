@@ -290,39 +290,39 @@
     {
         [self removeAuthData];
         
-        ssoLoggingIn = NO;
+//        ssoLoggingIn = NO;
         
         // open sina weibo app
-        UIDevice *device = [UIDevice currentDevice];
-        if ([device respondsToSelector:@selector(isMultitaskingSupported)] &&
-            [device isMultitaskingSupported])
-        {
-            NSDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                    self.appKey, @"client_id",
-                                    self.appRedirectURI, @"redirect_uri",
-                                    self.ssoCallbackScheme, @"callback_uri", nil];
-            
-            // 先用iPad微博打开
-            NSString *appAuthBaseURL = kSinaWeiboAppAuthURL_iPad;
-            if (SinaWeiboIsDeviceIPad())
-            {
-                NSString *appAuthURL = [SinaWeiboRequest serializeURL:appAuthBaseURL
-                                                               params:params httpMethod:@"GET"];
-                ssoLoggingIn = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:appAuthURL]];
-            }
-            
-            // 在用iPhone微博打开
-            if (!ssoLoggingIn)
-            {
-                appAuthBaseURL = kSinaWeiboAppAuthURL_iPhone;
-                NSString *appAuthURL = [SinaWeiboRequest serializeURL:appAuthBaseURL
-                                                               params:params httpMethod:@"GET"];
-                ssoLoggingIn = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:appAuthURL]];
-            }
-        }
+//        UIDevice *device = [UIDevice currentDevice];
+//        if ([device respondsToSelector:@selector(isMultitaskingSupported)] &&
+//            [device isMultitaskingSupported])
+//        {
+//            NSDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+//                                    self.appKey, @"client_id",
+//                                    self.appRedirectURI, @"redirect_uri",
+//                                    self.ssoCallbackScheme, @"callback_uri", nil];
+//            
+//            // 先用iPad微博打开
+//            NSString *appAuthBaseURL = kSinaWeiboAppAuthURL_iPad;
+//            if (SinaWeiboIsDeviceIPad())
+//            {
+//                NSString *appAuthURL = [SinaWeiboRequest serializeURL:appAuthBaseURL
+//                                                               params:params httpMethod:@"GET"];
+//                ssoLoggingIn = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:appAuthURL]];
+//            }
+//            
+//            // 在用iPhone微博打开
+//            if (!ssoLoggingIn)
+//            {
+//                appAuthBaseURL = kSinaWeiboAppAuthURL_iPhone;
+//                NSString *appAuthURL = [SinaWeiboRequest serializeURL:appAuthBaseURL
+//                                                               params:params httpMethod:@"GET"];
+//                ssoLoggingIn = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:appAuthURL]];
+//            }
+//        }
         
-        if (!ssoLoggingIn)
-        {
+//        if (!ssoLoggingIn)
+//        {
             // open authorize view
             
             NSDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -337,7 +337,7 @@
             [authorizeView show];
             [authorizeView release];
         }
-    }
+//    }
 }
 
 /**
